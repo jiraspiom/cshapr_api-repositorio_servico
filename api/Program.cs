@@ -1,4 +1,4 @@
-using api;
+using api.Entidades;
 using api.Interfaces.Repositorio;
 using api.Interfaces.Servico;
 using api.Repositorio;

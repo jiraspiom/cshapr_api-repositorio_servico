@@ -13,7 +13,7 @@ namespace api.Controllers
             _usuarioServico = usuarioServico;
         }
 
-        [HttpGet, Route("usuarios")]
+        [HttpGet, Route("usuario")]
         public async Task<IActionResult> Usuario()
         {
             try
@@ -29,8 +29,8 @@ namespace api.Controllers
             }
         }
 
-        [HttpGet, Route("usuario")]
-        public async Task<IActionResult> Logar(int id)
+        [HttpGet, Route("usuario/{id}")]
+        public async Task<IActionResult> Usuario(int id)
         {
             try
             {
