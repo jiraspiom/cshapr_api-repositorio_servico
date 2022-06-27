@@ -1,4 +1,5 @@
-﻿using api.Entidades;
+﻿using api.Data;
+using api.Entidades;
 using api.Interfaces.Repositorio;
 using Microsoft.EntityFrameworkCore;
 
