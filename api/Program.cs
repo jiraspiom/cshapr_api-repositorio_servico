@@ -11,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<Contexto>();
 
 builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+builder.Services.AddScoped<IGeralRepositorio, GeralRepositorio>();
 builder.Services.AddScoped<IUsuarioServico, UsuarioServico>();
 
 builder.Services.AddControllers();

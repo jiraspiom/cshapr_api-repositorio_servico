@@ -2,7 +2,7 @@
 
 namespace api.Interfaces.Repositorio
 {
-    public interface IUsuarioRepositorio
+    public interface IUsuarioRepositorio : IGeralRepositorio
     {
         Task<Usuario[]> PegarTodasAsync();
         Task<Usuario> PegarPorIdAsync(int id);

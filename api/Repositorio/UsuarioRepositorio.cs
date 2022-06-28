@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace api.Repositorio
 {
-    public class UsuarioRepositorio : IUsuarioRepositorio
+    public class UsuarioRepositorio : GeralRepositorio, IUsuarioRepositorio
     {
         private readonly Contexto _contexto;
-        public UsuarioRepositorio(Contexto contexto)
+        public UsuarioRepositorio(Contexto contexto) : base(contexto)
         {
             _contexto = contexto;
         }
