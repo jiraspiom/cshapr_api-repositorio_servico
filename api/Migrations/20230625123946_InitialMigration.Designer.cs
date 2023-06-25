@@ -10,13 +10,14 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220627115643_muitos")]
-    partial class muitos
+    [Migration("20230625123946_InitialMigration")]
+    partial class InitialMigration
     {
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.6");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.4");
 
             modelBuilder.Entity("api.Entidades.Author", b =>
                 {
@@ -63,6 +64,41 @@ namespace api.Migrations
                     b.ToTable("Books");
                 });
 
+            modelBuilder.Entity("api.Entidades.Curso", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("InstrutorId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InstrutorId");
+
+                    b.ToTable("Cursos");
+                });
+
+            modelBuilder.Entity("api.Entidades.Instrutor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Instrutores");
+                });
+
             modelBuilder.Entity("api.Entidades.Usuario", b =>
                 {
                     b.Property<int>("Id")
@@ -105,6 +141,17 @@ namespace api.Migrations
                     b.Navigation("Book");
                 });
 
+            modelBuilder.Entity("api.Entidades.Curso", b =>
+                {
+                    b.HasOne("api.Entidades.Instrutor", "Instrutor")
+                        .WithMany("Cursos")
+                        .HasForeignKey("InstrutorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Instrutor");
+                });
+
             modelBuilder.Entity("api.Entidades.Author", b =>
                 {
                     b.Navigation("AuthorBooks");
@@ -113,6 +160,11 @@ namespace api.Migrations
             modelBuilder.Entity("api.Entidades.Book", b =>
                 {
                     b.Navigation("AuthorsBook");
+                });
+
+            modelBuilder.Entity("api.Entidades.Instrutor", b =>
+                {
+                    b.Navigation("Cursos");
                 });
 #pragma warning restore 612, 618
         }
